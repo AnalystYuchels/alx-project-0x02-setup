@@ -1,4 +1,6 @@
-export interface Dummy {
-  id: number;
-  name: string;
+// interfaces/index.ts
+
+export interface CardProps {
+  title: string;
+  content: string;
 }
