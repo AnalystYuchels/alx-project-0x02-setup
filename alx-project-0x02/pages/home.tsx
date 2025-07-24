@@ -1,8 +1,8 @@
 // pages/home.tsx
 
 import Head from 'next/head';
-import Header from '../components/layout/Header';
-import Card from '../components/common/Card';
+import Header from '@/components/layout/Header';
+import Card from '@/components/common/Card';
 
 const HomePage = () => {
   return (
@@ -16,7 +16,6 @@ const HomePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card title="Card One" content="This is the first card's content." />
           <Card title="Card Two" content="Here is some more information in another card." />
-          <Card title="Card Three" content="Reusable components make life easier!" />
         </div>
       </main>
     </>
