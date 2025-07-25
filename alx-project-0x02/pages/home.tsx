@@ -1,24 +1,46 @@
 // pages/home.tsx
 
-import Head from 'next/head';
-import Header from '@/components/layout/Header';
+'use client';
+
+import { useState } from 'react';
 import Card from '@/components/common/Card';
+import PostModal from '@/components/common/PostModal';
+
+interface Post {
+  title: string;
+  content: string;
+}
 
 const HomePage = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAddPost = (newPost: Post) => {
+    setPosts((prev) => [...prev, newPost]);
+  };
+
   return (
-    <>
-      <Head>
-        <title>Home</title>
-      </Head>
-      <Header />
-      <main className="p-6 space-y-6">
-        <h1 className="text-3xl font-bold text-center">Welcome to the Home Page</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card title="Card One" content="This is the first card's content." />
-          <Card title="Card Two" content="Here is some more information in another card." />
-        </div>
-      </main>
-    </>
+    <div className="p-6">
+      <h1 className="text-3xl font-bold mb-4">Home</h1>
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="mb-6 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+      >
+        Add New Post
+      </button>
+
+      <PostModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleAddPost}
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {posts.map((post, index) => (
+          <Card key={index} title={post.title} content={post.content} />
+        ))}
+      </div>
+    </div>
   );
 };
 
