@@ -1,6 +1,6 @@
 // components/common/Card.tsx
 
-import { CardProps } from '../../interfaces';
+import { type CardProps } from '@/interfaces'; // <- EXACT match required
 
 const Card = ({ title, content }: CardProps) => {
   return (
